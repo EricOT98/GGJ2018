@@ -16,6 +16,8 @@ enum class GameState
 	HelpPage,
 	EndGame
 };
+#include "Player.h"
+#include "XB0XCONTROLLER.h"
 class Game
 {
 public:
@@ -50,6 +52,7 @@ private:
 	//TODO: (ERIC) Remove this to work with hud timer
 	float m_spawnTimer = 0;
 	float m_respawnTime;
+	Player playerRect;
 
 	//object for main menu
 	MainMenu m_mainMenu;
