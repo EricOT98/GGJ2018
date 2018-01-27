@@ -14,8 +14,6 @@ Game::Game() :
 		m_respawnTime = 1;
 		m_nodeHandler.populate(30);
 		m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
-		setupFontAndText();
-		setupSprite();
 	//Game:Elevation Pitch
 
 	setupFont(); // load font
@@ -137,7 +135,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 
-	m_nodeHandler.render(m_window);
+	
 	switch (currentGameState)
 	{
 	case GameState::MainMenu:
@@ -151,6 +149,7 @@ void Game::render()
 		break;
 	}
 	default:
+		m_nodeHandler.render(m_window);
 	m_window.draw(m_timer);
 	m_portal.render(m_window);
 		break;
@@ -163,11 +162,11 @@ void Game::render()
 /// </summary>
 void Game::setupFont()
 {
-	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+	if (!m_ArialBlackFont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
-	m_timer.setFont(m_ArialBlackfont);
+	m_timer.setFont(m_ArialBlackFont);
 	m_timer.setStyle(sf::Text::Bold);
 	m_timer.setPosition(100.f, 100.f);
 	m_timer.setCharacterSize(60);
