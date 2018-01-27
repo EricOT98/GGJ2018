@@ -4,6 +4,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "HUD.h"
+#include "Portal.h"
+#include "NodeHandler.h"
+
 class Game
 {
 public:
@@ -30,7 +33,12 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
-
+	Portal m_portal;
+	NodeHandler m_nodeHandler;
+	
+	//TODO: (ERIC) Remove this to work with hud timer
+	float m_spawnTimer = 0;
+	float m_respawnTime;
 };
 
 #endif // !GAME

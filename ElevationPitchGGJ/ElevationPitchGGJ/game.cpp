@@ -1,16 +1,16 @@
-// author Peter Lowe
-
 #include "Game.h"
 #include <iostream>
 
 
-
+//ASPR of 16:9
 Game::Game() :
-	m_window{ sf::VideoMode{ 800, 600, 32 }, "SFML Game" },
-	m_exitGame{false} //when true game will exit
+	m_window{ sf::VideoMode{ 1280, 720, 32 }, "SFML Game" },
+	m_exitGame{false},//when true game will exit
+	m_portal(sf::Vector2f(400,200), 100, "test")
 {
-	setupFontAndText(); // load font 
-	setupSprite(); // load texture
+	m_respawnTime = 1;
+	m_nodeHandler.populate(30);
+	m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
 }
 
 
@@ -69,10 +69,19 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+	m_spawnTimer += t_deltaTime.asSeconds();
+	std::cout << "Timer: " << m_spawnTimer << std::endl;
 	if (m_exitGame)
 	{
 		m_window.close();
 	}
+	if (m_spawnTimer >= m_respawnTime)
+	{
+		m_spawnTimer = 0;
+		m_nodeHandler.randomGeneration(sf::Vector2f(56, 100));
+	}
+	m_portal.update(t_deltaTime.asSeconds());
+	m_nodeHandler.update();
 }
 
 /// <summary>
@@ -126,4 +135,9 @@ void Game::setupSprite()
 	}
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
+}
+	m_portal.render(m_window);
+	m_nodeHandler.render(m_window);
+	
+	m_window.display();
 }
