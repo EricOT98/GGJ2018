@@ -52,7 +52,7 @@ private:
 	//TODO: (ERIC) Remove this to work with hud timer
 	float m_spawnTimer = 0;
 	float m_respawnTime;
-	Player playerRect;
+	Player player;
 
 	//object for main menu
 	MainMenu m_mainMenu;

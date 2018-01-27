@@ -11,7 +11,7 @@ Game::Game() :
 	m_window{ sf::VideoMode{ static_cast<unsigned>(Game::screenWidth), static_cast<unsigned>(Game::screenHeight), 32 }, "SFML Game" },
 	m_exitGame{ false }, //when true game will exit
 	m_portal(sf::Vector2f(400,200), 100, "test"),
-	playerRect(400,400, 40,40)
+	player(400,400, 40,40)
 {
 		m_respawnTime = 1;
 		m_nodeHandler.populate(30);
@@ -119,7 +119,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	default:
 	m_spawnTimer += t_deltaTime.asSeconds();
-	player.update(t_DeltaTime.asSeconds());
+	player.Update(t_deltaTime.asSeconds());
 	std::cout << "Timer: " << m_spawnTimer << std::endl;
 	if (m_spawnTimer >= m_respawnTime)
 	{
@@ -137,7 +137,6 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-<<<<<<< HEAD
 	m_window.clear(sf::Color::White);
 
 
@@ -155,17 +154,14 @@ void Game::render()
 	}
 	default:
 		m_nodeHandler.render(m_window);
-	m_window.draw(m_timer);
-	m_portal.render(m_window);
+		m_window.draw(m_timer);
+		m_portal.render(m_window);
+		player.Draw(m_window);
 		break;
 	}
-=======
 
-	m_window.clear();
-	playerRect.Draw(m_window);
 //	m_window.draw(m_welcomeMessage);
 //	m_window.draw(m_logoSprite);
->>>>>>> Player movement and size control added
 	m_window.display();
 
 
