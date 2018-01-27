@@ -24,6 +24,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeHandler.cpp" />
+    <ClCompile Include="PathDisplay.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="HelpPage.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeHandler.h" />
+    <ClInclude Include="PathDisplay.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="HelpPage.h" />
     <ClInclude Include="MainMenu.h" />

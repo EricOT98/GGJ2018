@@ -18,6 +18,7 @@ public:
 	void populate(int numNodes);
 	bool spawnNode(sf::Vector2f pos, sf::Vector2f size, sf::Color col);
 	void randomGeneration( sf::Vector2f size);
+	int getNumPositions();
 protected:
 	sf::Vector2f m_position;
 	std::vector<Node> m_nodes;

@@ -35,9 +35,10 @@ void NodeHandler::render(sf::RenderWindow & window)
 
 void NodeHandler::init(sf::Vector2f pos, sf::Vector2f & windowSize, int numColumns)
 {
-	m_columnWidth = (windowSize.x / 2.0f) / numColumns;
+	m_size = sf::Vector2f(windowSize.x / 2.0f, windowSize.y);
+	m_columnWidth = (m_size.x) / numColumns;
 	//m_size = sf::Vector2f(windowSize.x / 2.0f, windowSize.y);
-	for (int i = 0; i < numColumns; ++i) {
+	for (int i = 0; i < numColumns + 1; ++i) {
 		m_positions.push_back(pos.x + (i * m_columnWidth));
 		sf::VertexArray m_line(sf::Lines, 2);
 		m_line[0].position = sf::Vector2f(m_positions.at(i),0 );
@@ -72,5 +73,10 @@ void NodeHandler::randomGeneration(sf::Vector2f size)
 {
 	int numPositions = m_positions.size();
 	sf::Color col(std::rand() % 256, std::rand() % 256, std::rand() % 256, 255);
-	spawnNode(sf::Vector2f(m_positions.at(std::rand() % numPositions), 720), sf::Vector2f(m_columnWidth, size.y), col);
+	spawnNode(sf::Vector2f(m_positions.at(std::rand() % (numPositions - 1)), m_size.y), sf::Vector2f(m_columnWidth, size.y), col);
+}
+
+int NodeHandler::getNumPositions()
+{
+	return m_positions.size();
 }
