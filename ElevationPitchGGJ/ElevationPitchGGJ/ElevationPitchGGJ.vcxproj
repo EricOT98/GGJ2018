@@ -25,6 +25,8 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeHandler.cpp" />
     <ClCompile Include="Portal.cpp" />
+    <ClCompile Include="HelpPage.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -32,6 +34,8 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeHandler.h" />
     <ClInclude Include="Portal.h" />
+    <ClInclude Include="HelpPage.h" />
+    <ClInclude Include="MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\pictures\SFML-LOGO.png" />

@@ -2,17 +2,25 @@
 #include <iostream>
 
 
-//ASPR of 16:9
+GameState Game::currentGameState = GameState::MainMenu;
+float Game::screenWidth = 2000;
+float Game::screenHeight = 1000;
+
 Game::Game() :
-	m_window{ sf::VideoMode{ 1280, 720, 32 }, "SFML Game" },
-	m_exitGame{false},//when true game will exit
+	m_window{ sf::VideoMode{ static_cast<unsigned>(Game::screenWidth), static_cast<unsigned>(Game::screenHeight), 32 }, "SFML Game" },
+	m_exitGame{ false }, //when true game will exit
 	m_portal(sf::Vector2f(400,200), 100, "test")
 {
-	m_respawnTime = 1;
-	m_nodeHandler.populate(30);
-	m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
-	setupFontAndText();
-	setupSprite();
+		m_respawnTime = 1;
+		m_nodeHandler.populate(30);
+		m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
+		setupFontAndText();
+		setupSprite();
+	//Game:Elevation Pitch
+
+	setupFont(); // load font
+	setUpScreens(); // load screens
+
 }
 
 
@@ -61,6 +69,26 @@ void Game::processEvents()
 			{
 				m_exitGame = true;
 			}
+			//go back to main menu-> change to controller
+			if (sf::Keyboard::BackSpace == event.key.code)
+			{
+				Game::currentGameState = GameState::MainMenu;
+			}
+		}
+		switch (currentGameState)
+		{
+		case GameState::MainMenu:
+		{
+			break;
+		}
+
+		case GameState::HelpPage:
+		{
+			m_helpPage.processInput(event);
+			break;
+		}
+		default:
+			break;
 		}
 	}
 }
@@ -71,12 +99,26 @@ void Game::processEvents()
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	m_spawnTimer += t_deltaTime.asSeconds();
-	std::cout << "Timer: " << m_spawnTimer << std::endl;
+
 	if (m_exitGame)
 	{
 		m_window.close();
 	}
+
+	switch (currentGameState)
+	{
+	case GameState::MainMenu:
+	{
+		m_mainMenu.update(m_window);
+		break;
+	}
+	case GameState::HelpPage:
+	{
+		m_helpPage.update(t_deltaTime);
+	}
+	default:
+	m_spawnTimer += t_deltaTime.asSeconds();
+	std::cout << "Timer: " << m_spawnTimer << std::endl;
 	if (m_spawnTimer >= m_respawnTime)
 	{
 		m_spawnTimer = 0;
@@ -84,6 +126,8 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	m_portal.update(t_deltaTime.asSeconds());
 	m_nodeHandler.update();
+		break;
+	}
 }
 
 /// <summary>
@@ -92,31 +136,37 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+
+	m_nodeHandler.render(m_window);
+	switch (currentGameState)
+	{
+	case GameState::MainMenu:
+	{
+		m_mainMenu.render(m_window);
+		break;
+	}
+	case GameState::HelpPage:
+	{
+		m_helpPage.render(m_window);
+		break;
+	}
+	default:
 	m_window.draw(m_timer);
 	m_portal.render(m_window);
-	m_nodeHandler.render(m_window);
+		break;
+	}
 	m_window.display();
 }
 
 /// <summary>
-/// load the font and setup the text message for screen
+/// load the font
 /// </summary>
-void Game::setupFontAndText()
+void Game::setupFont()
 {
 	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
 	{
 		std::cout << "problem loading arial black font" << std::endl;
 	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
 	m_timer.setFont(m_ArialBlackfont);
 	m_timer.setStyle(sf::Text::Bold);
 	m_timer.setPosition(100.f, 100.f);
@@ -128,15 +178,10 @@ void Game::setupFontAndText()
 }
 
 /// <summary>
-/// load the texture and setup the sprite for the logo
+/// initialization of the screens
 /// </summary>
-void Game::setupSprite()
+void Game::setUpScreens()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
-	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	m_mainMenu.init(m_ArialBlackFont);
+	m_helpPage.init(m_ArialBlackFont);
 }
