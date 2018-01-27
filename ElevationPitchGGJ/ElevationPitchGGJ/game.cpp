@@ -11,6 +11,8 @@ Game::Game() :
 	m_respawnTime = 1;
 	m_nodeHandler.populate(30);
 	m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
+	setupFontAndText();
+	setupSprite();
 }
 
 
@@ -93,6 +95,8 @@ void Game::render()
 	m_window.draw(m_welcomeMessage);
 	m_window.draw(m_logoSprite);
 	m_window.draw(m_timer);
+	m_portal.render(m_window);
+	m_nodeHandler.render(m_window);
 	m_window.display();
 }
 
@@ -135,9 +139,4 @@ void Game::setupSprite()
 	}
 	m_logoSprite.setTexture(m_logoTexture);
 	m_logoSprite.setPosition(300.0f, 180.0f);
-}
-	m_portal.render(m_window);
-	m_nodeHandler.render(m_window);
-	
-	m_window.display();
 }
