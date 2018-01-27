@@ -22,6 +22,7 @@ public:
 	std::vector<Node> m_nodes;
 
 	void setSpeed(float speed);
+	int getNumPositions();
 protected:
 	sf::Vector2f m_position;
 	std::vector<int> m_positions;

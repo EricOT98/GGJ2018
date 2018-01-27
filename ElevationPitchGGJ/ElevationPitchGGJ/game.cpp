@@ -15,7 +15,7 @@ Game::Game() :
 {
 		m_respawnTime = 1;
 		m_nodeHandler.populate(30);
-		m_nodeHandler.init(sf::Vector2f(200, 0), sf::Vector2f(m_window.getSize()), 4);
+		m_nodeHandler.init(sf::Vector2f(0, 0), sf::Vector2f(m_window.getSize()), 4);
 	//Game:Elevation Pitch
 
 	setupFont(); // load font
