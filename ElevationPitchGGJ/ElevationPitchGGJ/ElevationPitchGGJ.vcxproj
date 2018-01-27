@@ -27,6 +27,8 @@
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="HelpPage.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="XBOXCONTROLLER.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -36,11 +38,6 @@
     <ClInclude Include="Portal.h" />
     <ClInclude Include="HelpPage.h" />
     <ClInclude Include="MainMenu.h" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="XBOXCONTROLLER.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="XB0XCONTROLLER.h" />
   </ItemGroup>
