@@ -3,7 +3,7 @@
 #define GAME
 
 #include <SFML/Graphics.hpp>
-
+#include "HUD.h"
 class Game
 {
 public:
@@ -15,7 +15,7 @@ public:
 	void run();
 
 private:
-
+	Hud m_hud;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();

@@ -33,6 +33,7 @@ void Game::run()
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
 			update(timePerFrame); //60 fps
+			m_hud.time(timePerFrame);
 		}
 		render(); // as many as possible
 	}
