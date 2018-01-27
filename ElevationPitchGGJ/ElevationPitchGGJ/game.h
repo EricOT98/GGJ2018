@@ -45,11 +45,15 @@ private:
 	void setupFont();
 	void setUpScreens();
 	bool collision();
+	//check if gameover
+	void gameOverCheck();
 	std::string m_timerChanger; // passes timer to function to convert to sf::Text
 	sf::Text m_timer; // this is the timer in sf::Text
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackFont; // font used by message
+
 	bool m_exitGame; // control exiting game
+	bool m_gameOver; //true if game over
 	Portal m_portal;
 	NodeHandler m_nodeHandler;
 	PathDisplay m_pathDisplay;
@@ -63,6 +67,10 @@ private:
 	MainMenu m_mainMenu;
 	//object for help page
 	HelpPage m_helpPage;
+
+	//gameover text
+	sf::Text m_gameOverText;
+
 };
 
 #endif // !GAME

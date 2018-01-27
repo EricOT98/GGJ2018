@@ -2,7 +2,8 @@
 #include <iostream>
 #include "KeyboardHandler.h"
 
-Player::Player()
+Player::Player():
+	m_lives{0}
 {
 }
 
@@ -102,4 +103,9 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(m_player);
 //	std::cout << "Drawing" << std::endl;
 	
+}
+
+int Player::getLives()
+{
+	return m_lives;
 }

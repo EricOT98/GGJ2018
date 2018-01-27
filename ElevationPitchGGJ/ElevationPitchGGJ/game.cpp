@@ -1,3 +1,4 @@
+//Game:Elevation Pitch
 #include "Game.h"
 #include <iostream>
 
@@ -10,6 +11,7 @@ float Game::screenHeight = 720;
 Game::Game() :
 	m_window{ sf::VideoMode{ static_cast<unsigned>(Game::screenWidth), static_cast<unsigned>(Game::screenHeight), 32 }, "SFML Game" },
 	m_exitGame{ false }, //when true game will exit
+	m_gameOver{false},
 	m_portal(sf::Vector2f(400,200), 100, "test"),
 	m_player(400,400, 40,40)
 {
@@ -23,6 +25,12 @@ Game::Game() :
 
 	setupFont(); // load font
 	setUpScreens(); // load screens
+
+	m_gameOverText.setFont(m_ArialBlackFont);
+	m_gameOverText.setString("gameover");
+	m_gameOverText.setPosition(500,500);
+	m_gameOverText.setFillColor(sf::Color::Red);
+	m_gameOverText.setCharacterSize(35);
 
 }
 
@@ -46,9 +54,15 @@ void Game::run()
 		{
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
-			update(timePerFrame); //60 fps
-			m_timerChanger = m_hud.time(timePerFrame);
-			m_timer.setString(m_timerChanger);
+
+
+
+				update(timePerFrame); //60 fps
+
+				m_timerChanger = m_hud.time(timePerFrame);
+				m_timer.setString(m_timerChanger);
+
+
 		}
 		render(); // as many as possible
 	}
@@ -78,6 +92,7 @@ void Game::processEvents()
 			{
 				Game::currentGameState = GameState::MainMenu;
 			}
+
 		}
 
 
@@ -89,7 +104,6 @@ void Game::processEvents()
 		{
 			break;
 		}
-
 		case GameState::HelpPage:
 		{
 			m_helpPage.processInput(event);
@@ -129,7 +143,6 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-
 	switch (currentGameState)
 	{
 	case GameState::MainMenu:
@@ -170,6 +183,7 @@ void Game::update(sf::Time t_deltaTime)
 		}
 		break;
 	}
+	gameOverCheck();
 }
 
 /// <summary>
@@ -178,7 +192,6 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-
 
 	switch (currentGameState)
 	{
@@ -192,6 +205,7 @@ void Game::render()
 		m_helpPage.render(m_window);
 		break;
 	}
+
 	default:
 		m_nodeHandler.render(m_window);
 		m_pathDisplay.render(m_window);
@@ -199,12 +213,13 @@ void Game::render()
 		m_portal.render(m_window);
 		m_player.Draw(m_window);
 		break;
+
 	}
-
-//	m_window.draw(m_welcomeMessage);
-//	m_window.draw(m_logoSprite);
+	if (m_gameOver)
+	{
+		m_window.draw(m_gameOverText);
+	}
 	m_window.display();
-
 
 }
 
@@ -236,6 +251,15 @@ void Game::setUpScreens()
 {
 	m_mainMenu.init(m_ArialBlackFont);
 	m_helpPage.init(m_ArialBlackFont);
+
+}
+
+void Game::gameOverCheck()
+{
+
+
+		m_gameOver = true;
+
 }
 
 bool Game::collision()
