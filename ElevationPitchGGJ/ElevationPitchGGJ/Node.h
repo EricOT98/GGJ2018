@@ -11,12 +11,14 @@ public:
 
 	void update();
 	void render(sf::RenderWindow & window);
-
+	sf::Vector2f getNodePosition();
 	void spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed);
 
 	bool getAlive();
 	void setAlive(bool alive);
 	bool withinBounds(sf::Vector2f pos, sf::Vector2f size);
+	sf::Vector2f getSize();
+	sf::Vector2f getPosition();
 protected:
 	sf::Vector2f m_position;
 	sf::RectangleShape m_rect;

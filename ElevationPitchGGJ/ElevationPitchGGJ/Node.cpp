@@ -20,6 +20,11 @@ void Node::render(sf::RenderWindow & window)
 	window.draw(m_rect);
 }
 
+sf::Vector2f Node::getNodePosition()
+{
+	return sf::Vector2f(m_position);
+}
+
 /// <summary>
 /// 
 /// </summary>
@@ -49,4 +54,14 @@ void Node::setAlive(bool alive)
 bool Node::withinBounds(sf::Vector2f pos, sf::Vector2f size)
 {
 	return (m_position.y + m_rect.getSize().y < pos.y);
+}
+
+sf::Vector2f Node::getSize()
+{
+	return m_rect.getSize();
+}
+
+sf::Vector2f Node::getPosition()
+{
+	return m_position;
 }

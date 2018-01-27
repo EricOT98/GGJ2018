@@ -11,7 +11,7 @@ Game::Game() :
 	m_window{ sf::VideoMode{ static_cast<unsigned>(Game::screenWidth), static_cast<unsigned>(Game::screenHeight), 32 }, "SFML Game" },
 	m_exitGame{ false }, //when true game will exit
 	m_portal(sf::Vector2f(400,200), 100, "test"),
-	player(400,400, 40,40)
+	m_player(400,400, 40,40)
 {
 		m_respawnTime = 1;
 		m_nodeHandler.populate(30);
@@ -118,16 +118,33 @@ void Game::update(sf::Time t_deltaTime)
 		m_helpPage.update(t_deltaTime);
 	}
 	default:
-	m_spawnTimer += t_deltaTime.asSeconds();
-	player.Update(t_deltaTime.asSeconds());
-	std::cout << "Timer: " << m_spawnTimer << std::endl;
-	if (m_spawnTimer >= m_respawnTime)
-	{
-		m_spawnTimer = 0;
-		m_nodeHandler.randomGeneration(sf::Vector2f(56, 100));
-	}
-	m_portal.update(t_deltaTime.asSeconds());
-	m_nodeHandler.update();
+		m_spawnTimer += t_deltaTime.asSeconds();
+		m_player.Update(t_deltaTime.asSeconds());
+		//std::cout << "Timer: " << m_spawnTimer << std::endl;
+		if (m_spawnTimer >= m_respawnTime)
+		{
+			m_spawnTimer = 0;
+			m_nodeHandler.randomGeneration(sf::Vector2f(56, 100));
+		}
+		m_portal.update(t_deltaTime.asSeconds());
+		m_nodeHandler.update();
+		/*m_collided = m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize());
+		if (m_collided)
+		{
+			std::cout << "collision" << std::endl;
+		}
+		else
+		{
+			std::cout << "not colliding" << std::endl;
+		}*/
+		for (auto & node : m_nodeHandler.m_nodes) {
+			if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
+				std::cout << "collision" << std::endl;
+			}
+			else {
+			//	std::cout << "not col" << std::endl;
+			}
+		}
 		break;
 	}
 }
@@ -156,7 +173,7 @@ void Game::render()
 		m_nodeHandler.render(m_window);
 		m_window.draw(m_timer);
 		m_portal.render(m_window);
-		player.Draw(m_window);
+		m_player.Draw(m_window);
 		break;
 	}
 
@@ -166,6 +183,8 @@ void Game::render()
 
 
 }
+
+
 
 /// <summary>
 /// load the font
@@ -193,4 +212,42 @@ void Game::setUpScreens()
 {
 	m_mainMenu.init(m_ArialBlackFont);
 	m_helpPage.init(m_ArialBlackFont);
+}
+
+bool Game::collision()
+{
+	sf::Vector2f p_pos = m_player.getPlayerPosition();
+	sf::Vector2f p_size = m_player.getPlayerSize();
+	sf::Vector2f n_pos = m_node.getNodePosition();
+	sf::Vector2f n_size = m_nodeHandler.getNodeSize();
+	/*if (&&  &&
+		 && )
+	{
+		std::cout << "collision" << std::endl;
+		return true;
+	}*/
+	//if (p_pos.x + p_size.x >= n_pos.x)
+	//{
+	//	//std::cout <<  "true 1 " << std::endl;
+	//}
+	//if (!(n_pos.x + n_size.x <= p_pos.x))
+	//{
+	//	std::cout << "true 2" << std::endl;
+	//}
+	//if (p_pos.y + p_size.y >= n_pos.y)
+	//{
+	//	std::cout << "true 3" << std::endl;
+	//}
+	//if (!(n_pos.y + n_size.y <= p_pos.y))
+	//{
+	//	std::cout << "true 4" << std::endl;
+	//}
+	//else
+	//{
+	//	return false;
+	//}
+	return (p_pos.x + p_size.x < n_pos.x ||
+		p_pos.x > n_pos.x + n_size.x ||
+		p_pos.y + p_size.y < n_pos.y ||
+		p_pos.y > n_pos.y + n_size.y);
 }

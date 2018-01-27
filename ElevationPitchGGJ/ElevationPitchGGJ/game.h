@@ -35,12 +35,14 @@ public:
 
 private:
 	Hud m_hud;
+	Node m_node;
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
-
+	
 	void setupFont();
 	void setUpScreens();
+	bool collision();
 	std::string m_timerChanger; // passes timer to function to convert to sf::Text
 	sf::Text m_timer; // this is the timer in sf::Text
 	sf::RenderWindow m_window; // main SFML window
@@ -52,8 +54,8 @@ private:
 	//TODO: (ERIC) Remove this to work with hud timer
 	float m_spawnTimer = 0;
 	float m_respawnTime;
-	Player player;
-
+	Player m_player;
+	bool m_collided = false;
 	//object for main menu
 	MainMenu m_mainMenu;
 	//object for help page

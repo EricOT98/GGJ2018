@@ -50,6 +50,11 @@ void NodeHandler::init(sf::Vector2f pos, sf::Vector2f & windowSize, int numColum
 	std::srand(0);
 }
 
+sf::Vector2f NodeHandler::getNodeSize()
+{
+	return sf::Vector2f(m_size);
+}
+
 void NodeHandler::populate(int numNodes)
 {
 	for (int i = 0; i < numNodes; ++i) {
@@ -73,4 +78,14 @@ void NodeHandler::randomGeneration(sf::Vector2f size)
 	int numPositions = m_positions.size();
 	sf::Color col(std::rand() % 256, std::rand() % 256, std::rand() % 256, 255);
 	spawnNode(sf::Vector2f(m_positions.at(std::rand() % numPositions), 720), sf::Vector2f(m_columnWidth, size.y), col);
+}
+
+bool NodeHandler::collision(sf::Vector2f & p_pos, sf::Vector2f & p_size, Node & node)
+{
+	sf::Vector2f n_size = node.getSize();
+	sf::Vector2f n_pos = node.getPosition();
+	return !(p_pos.x + p_size.x <n_pos.x ||
+		p_pos.x > n_pos.x + n_size.x ||
+		p_pos.y + p_size.y < n_pos.y ||
+		p_pos.y > n_pos.y + n_size.y);
 }

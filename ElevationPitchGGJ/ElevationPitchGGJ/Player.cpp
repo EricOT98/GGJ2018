@@ -9,13 +9,23 @@ Player::Player(float x, float y, float const SCALE, bool set)
 {
 	m_player.setFillColor(sf::Color(100, 250, 50));
 	m_player.setPosition(m_position);
-	m_player.setSize(sf::Vector2f(100,100));
+	m_player.setSize(m_playerSize);
 
 
 }
 
 Player::~Player()
 {
+}
+
+sf::Vector2f Player::getPlayerPosition()
+{
+	return sf::Vector2f(m_position);
+}
+
+sf::Vector2f Player::getPlayerSize()
+{
+	return sf::Vector2f(m_playerSize);
 }
 
 
@@ -28,7 +38,7 @@ void Player::Update(float deltaTime)
 
 		m_position.x -= speed;
 		
-		std::cout << "moving" << std::endl;
+		//std::cout << "moving" << std::endl;
 		//if (jump == true && m_body->GetPosition().x <= 3.9)
 		//{
 		//	m_body->SetLinearVelocity(b2Vec2(-15, 15));
@@ -40,7 +50,7 @@ void Player::Update(float deltaTime)
 
 		m_position.x += speed;
 
-		std::cout << "moving" << std::endl;
+		//std::cout << "moving" << std::endl;
 		
 	}
 
@@ -50,7 +60,7 @@ void Player::Update(float deltaTime)
 		//m_player.setSize(m_player.);
 		if(m_player.getSize().x < 150 )
 		{
-			m_player.setSize(sf::Vector2f(m_player.getSize().x + 1.0f, m_player.getSize().y - 0.5f));
+			m_player.setSize(sf::Vector2f(m_playerSize.x + 1.0f, m_playerSize.y - 0.5f));
 		}
 		//else
 		//{
@@ -67,7 +77,7 @@ void Player::Update(float deltaTime)
 	{
 		if (m_player.getSize().x > 50)
 		{
-			m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f, m_player.getSize().y + 0.5f));
+			m_player.setSize(sf::Vector2f(m_playerSize.x - 1.0f, m_playerSize.y + 0.5f));
 		}
 		//m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f,m_player.getSize().y ));
 		std::cout << m_xbox.m_currentState.RTtrigger << std::endl;
