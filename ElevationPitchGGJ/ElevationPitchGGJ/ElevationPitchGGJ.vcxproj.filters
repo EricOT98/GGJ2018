@@ -31,6 +31,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +48,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
