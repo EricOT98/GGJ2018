@@ -8,10 +8,14 @@ Hud::~Hud()
 {
 }
 
-float Hud::time(sf::Time t_deltaTime)
+std::string Hud::time(sf::Time t_deltaTime)
 {
 	m_miliseconds += t_deltaTime.asSeconds();	// gives time as seconds at rate of 1/60 of a second
-	m_milisecondString = std::to_string(m_miliseconds);
+	m_milisecondTruncate = m_miliseconds * m_multiplier;
+	m_milisecondOutput = m_milisecondTruncate;
+	m_milisecondString = std::to_string(m_milisecondOutput);
+	
+	
 	if (m_miliseconds >= 1)		// checks if total miliseconds == 1 second
 	{
 		m_miliseconds = 0.f;	// resets miliseconds counter
@@ -40,6 +44,7 @@ float Hud::time(sf::Time t_deltaTime)
 		}
 	}
 	
-	std::cout << m_minuteString << " : " << m_secondString << " : " << m_milisecondString << std::endl;
-	return m_seconds; 
+	m_totalString = m_minuteString + " : " + m_secondString + " : " + m_milisecondString;
+	
+	return m_totalString; 
 }

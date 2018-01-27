@@ -33,7 +33,8 @@ void Game::run()
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
 			update(timePerFrame); //60 fps
-			m_hud.time(timePerFrame);
+			m_timerChanger = m_hud.time(timePerFrame);
+			m_timer.setString(m_timerChanger);
 		}
 		render(); // as many as possible
 	}
@@ -82,6 +83,7 @@ void Game::render()
 	m_window.clear(sf::Color::White);
 	m_window.draw(m_welcomeMessage);
 	m_window.draw(m_logoSprite);
+	m_window.draw(m_timer);
 	m_window.display();
 }
 
@@ -102,6 +104,13 @@ void Game::setupFontAndText()
 	m_welcomeMessage.setOutlineColor(sf::Color::Red);
 	m_welcomeMessage.setFillColor(sf::Color::Black);
 	m_welcomeMessage.setOutlineThickness(3.0f);
+	m_timer.setFont(m_ArialBlackfont);
+	m_timer.setStyle(sf::Text::Bold);
+	m_timer.setPosition(100.f, 100.f);
+	m_timer.setCharacterSize(60);
+	m_timer.setFillColor(sf::Color::Yellow);
+	m_timer.setOutlineColor(sf::Color::Black);
+	m_timer.setOutlineThickness(5.f);
 
 }
 

@@ -22,7 +22,8 @@ private:
 	
 	void setupFontAndText();
 	void setupSprite();
-
+	std::string m_timerChanger; // passes timer to function to convert to sf::Text
+	sf::Text m_timer; // this is the timer in sf::Text
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
 	sf::Text m_welcomeMessage; // text used for message on screen
