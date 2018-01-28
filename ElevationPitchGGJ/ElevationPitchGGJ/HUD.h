@@ -18,6 +18,7 @@ public:
 	float returnMiliseconds();
 	int returnSeconds();
 	int returnMinutes();
+
 private:
 	float m_miliseconds = 0.f;	// holds time in miliseconds
 	

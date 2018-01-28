@@ -15,8 +15,10 @@ void MainMenu::init(sf::Font & font)
 	{
 	}
 	m_menuSound.setBuffer(m_buffer);
-
-	
+	m_controlScheme.setFont(font);
+	m_controlScheme.setString("Press RT to speed up \n LT to slow Down, \n Leftstick moves player,\n A to start \n backspace to go back ");
+	m_controlScheme.setPosition(0, 0);
+	m_controlScheme.setFillColor(sf::Color::Red);
 	sf::String m_menuTexts[] = { "Quit","Help Page","Play Game"};
 	m_font = font;
 	for (int i = 0; i < m_optionCount; i++)
@@ -35,6 +37,7 @@ void MainMenu::render(sf::RenderWindow & window)
 	{
 		window.draw(m_buttonText[i]);
 	}
+	window.draw(m_controlScheme);
 }
 
 //go from 1 state to another-> change to controller

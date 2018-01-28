@@ -100,11 +100,6 @@ void Game::processEvents()
 			{
 				Game::currentGameState = GameState::MainMenu;
 			}
-	/*		if (sf::Keyboard::Space == event.key.code && m_gameOver == true)
-			{
-				m_gameOver = false;
-				restartLevel();
-			}*/
 		}
 
 
@@ -159,6 +154,7 @@ void Game::update(sf::Time t_deltaTime)
 	{
 	case GameState::MainMenu:
 	{
+		m_hud.setScore(0);
 		m_mainMenu.update(m_window);
 		m_hud.resetTimer();
 		break;

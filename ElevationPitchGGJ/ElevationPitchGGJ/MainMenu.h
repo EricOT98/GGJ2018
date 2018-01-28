@@ -28,6 +28,7 @@ private:
 	static const int m_optionCount=3;
 	//texts array for all menu boxes
 	sf::Text m_buttonText[m_optionCount];
+	sf::Text m_controlScheme;
 	XboxController m_xbox;
 	
 };
