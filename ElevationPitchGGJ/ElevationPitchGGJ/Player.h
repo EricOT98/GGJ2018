@@ -21,6 +21,7 @@ public:
 	float m_nodeSpeed = 5;
 	void loseLife();
 	sf::RectangleShape m_player;
+	int m_lives;
 private:
 
 	
@@ -30,7 +31,7 @@ private:
 	float speed = 50;
 	float increase = 10;
 	sf::Vector2f m_position;
-	int m_lives;
+	
 
 
 };

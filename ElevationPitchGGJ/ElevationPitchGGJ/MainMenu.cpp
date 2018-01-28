@@ -41,6 +41,7 @@ void MainMenu::render(sf::RenderWindow & window)
 void MainMenu::update(sf::Window & window)
 {
 
+	m_xbox.update();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || m_xbox.m_currentState.X)
 	{
