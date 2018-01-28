@@ -2,12 +2,13 @@
 #include <iostream>
 #include "KeyboardHandler.h"
 
-Player::Player():
-	m_lives{0}
+Player::Player()
+
 {
 }
 
-Player::Player(float x, float y, float const SCALE, bool set)
+Player::Player(float x, float y, float const SCALE, bool set):
+	m_lives{ 0 }
 {
 	m_player.setFillColor(sf::Color(100, 250, 50));
 	m_player.setPosition(m_position);
@@ -108,4 +109,9 @@ void Player::Draw(sf::RenderWindow& window)
 int Player::getLives()
 {
 	return m_lives;
+}
+
+void Player::setLives(int newLives)
+{
+	m_lives = newLives;
 }

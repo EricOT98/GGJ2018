@@ -17,6 +17,8 @@ public:
 	void Draw(sf::RenderWindow& window);
 //	float colour =
 	int getLives();
+	void setLives(int newLives);
+
 private:
 
 	sf::RectangleShape m_player;

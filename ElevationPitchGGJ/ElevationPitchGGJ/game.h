@@ -47,6 +47,7 @@ private:
 	bool collision();
 	//check if gameover
 	void gameOverCheck();
+	void restartLevel();
 	std::string m_timerChanger; // passes timer to function to convert to sf::Text
 	sf::Text m_timer; // this is the timer in sf::Text
 	sf::RenderWindow m_window; // main SFML window
