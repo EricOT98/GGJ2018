@@ -14,6 +14,7 @@ Game::Game() :
 	m_gameOver{false},
 	m_portal(sf::Vector2f(400,200), 100, "test"),
 	m_player(250,100, 40,40)
+
 {
 	int gap = 20;
 	m_respawnTime = 1;
@@ -31,6 +32,11 @@ Game::Game() :
 	m_gameOverText.setPosition(500,500);
 	m_gameOverText.setFillColor(sf::Color::Red);
 	m_gameOverText.setCharacterSize(35);
+	
+	
+	bar.setFillColor(sf::Color(100, 250, 50));
+	bar.setPosition(m_bposition);
+	bar.setSize(m_playerSize);
 
 }
 
@@ -94,11 +100,11 @@ void Game::processEvents()
 			{
 				Game::currentGameState = GameState::MainMenu;
 			}
-			if (sf::Keyboard::Space == event.key.code && m_gameOver == true)
+	/*		if (sf::Keyboard::Space == event.key.code && m_gameOver == true)
 			{
 				m_gameOver = false;
 				restartLevel();
-			}
+			}*/
 		}
 
 
@@ -205,6 +211,8 @@ void Game::update(sf::Time t_deltaTime)
 						std::cout << "Incorrect: Restarting" << std::endl;
 						m_pathDisplay.m_currentNode = 0;
 						node.setAlive(false);
+						m_player.m_lives -= 1;
+						std::cout << "Lives: " <<  m_player.getLives()<<std::endl;
 						for (auto & node : m_pathDisplay.m_nodeHandler.m_nodes) {
 							node.setColor(sf::Color(128, 128, 128, 255));
 						}
@@ -245,6 +253,7 @@ void Game::render()
 		m_portal.render(m_window);
 		m_player.Draw(m_window);
 		m_hud.render(m_window);
+		m_window.draw(bar);
 		break;
 
 	}
