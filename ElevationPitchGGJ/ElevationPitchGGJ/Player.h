@@ -18,6 +18,7 @@ public:
 //	float colour =
 	int getLives();
 	void setLives(int newLives);
+	float m_nodeSpeed = 5;
 
 private:
 
@@ -27,7 +28,7 @@ private:
 
 	float speed = 50;
 	float increase = 10;
-	sf::Vector2f m_position = sf::Vector2f(200,400);
+	sf::Vector2f m_position;
 	int m_lives;
 
 };

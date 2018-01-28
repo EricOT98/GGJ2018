@@ -13,7 +13,7 @@ Game::Game() :
 	m_exitGame{ false }, //when true game will exit
 	m_gameOver{false},
 	m_portal(sf::Vector2f(400,200), 100, "test"),
-	m_player(400,400, 40,40)
+	m_player(250,100, 40,40)
 {
 	int gap = 20;
 	m_respawnTime = 1;
@@ -164,6 +164,8 @@ void Game::update(sf::Time t_deltaTime)
 	default:
 		m_spawnTimer += t_deltaTime.asSeconds();
 		m_player.Update(t_deltaTime.asSeconds());
+		m_nodeHandler.setSpeed(m_player.m_nodeSpeed);
+
 		//std::cout << "Timer: " << m_spawnTimer << std::endl;
 		if (m_spawnTimer >= m_respawnTime)
 		{
@@ -184,6 +186,7 @@ void Game::update(sf::Time t_deltaTime)
 		for (auto & node : m_nodeHandler.m_nodes) {
 			if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
 				std::cout << "collision" << std::endl;
+				m_nodeHandler.m_pingSound.play();
 			}
 
 

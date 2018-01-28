@@ -2,6 +2,7 @@
 #define MAINMENU
 #include <SFML\Graphics.hpp>
 #include "XB0XCONTROLLER.h"
+#include<SFML\Audio.hpp>
 
 class Game;
 class MainMenu
@@ -17,6 +18,9 @@ public:
 	void render(sf::RenderWindow&);
 	//update window
 	void update(sf::Window&);
+
+	sf::SoundBuffer m_buffer;
+	sf::Sound m_menuSound;
 private:
 	//font used
 	sf::Font m_font;

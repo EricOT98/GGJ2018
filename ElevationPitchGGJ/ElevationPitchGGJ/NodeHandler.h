@@ -3,6 +3,7 @@
 
 #include <SFML\Graphics.hpp>
 #include "Node.h"
+#include<SFML\Audio.hpp>
 
 class NodeHandler
 {
@@ -12,6 +13,8 @@ public:
 
 	void update();
 	void render(sf::RenderWindow & window);
+	sf::SoundBuffer m_buffer;
+	sf::Sound m_pingSound;
 
 	void init(sf::Vector2f pos, sf::Vector2f & windowSize, int numColumns);
 	sf::Vector2f getNodeSize();
@@ -20,7 +23,7 @@ public:
 	void randomGeneration( sf::Vector2f size);
 	bool collision(sf::Vector2f & p_pos, sf::Vector2f & p_size, Node & node);
 	std::vector<Node> m_nodes;
-
+	int m_nodespeed  = 5; 
 	void setSpeed(float speed);
 	int getNumPositions();
 	std::vector<int> m_positions;

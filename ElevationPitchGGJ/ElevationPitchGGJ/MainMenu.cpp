@@ -11,6 +11,11 @@ MainMenu::~MainMenu()
 //initialise the texts
 void MainMenu::init(sf::Font & font)
 {
+	if (!m_buffer.loadFromFile("ASSETS\\AUDIO\\menu.wav"))
+	{
+	}
+	m_menuSound.setBuffer(m_buffer);
+
 	
 	sf::String m_menuTexts[] = { "Quit","Help Page","Play Game"};
 	m_font = font;
@@ -36,15 +41,17 @@ void MainMenu::render(sf::RenderWindow & window)
 void MainMenu::update(sf::Window & window)
 {
 
-	m_xbox.update();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || m_xbox.m_currentState.X)
 	{
 		Game::currentGameState = GameState::HelpPage;
+		
+		
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) || m_xbox.m_currentState.A)
 	{
 		Game::currentGameState = GameState::PlayGame;
+		m_menuSound.play();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
