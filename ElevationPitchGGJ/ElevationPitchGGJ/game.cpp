@@ -221,7 +221,7 @@ void Game::setupFont()
 	}
 	m_timer.setFont(m_ArialBlackFont);
 	m_timer.setStyle(sf::Text::Bold);
-	m_timer.setPosition(1550.f, 50.f);
+	m_timer.setPosition(Game::screenWidth - 500, 50);
 	m_timer.setCharacterSize(60);
 	m_timer.setFillColor(sf::Color::Yellow);
 	m_timer.setOutlineColor(sf::Color::Black);

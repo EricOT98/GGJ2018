@@ -26,8 +26,6 @@ public:
 	std::vector<int> m_positions;
 protected:
 	sf::Vector2f m_position;
-	std::vector<int> m_positions;
-	std::vector<Node> m_nodes;
 	
 	float m_columnWidth = 0;
 	std::vector<sf::VertexArray> m_lines;
