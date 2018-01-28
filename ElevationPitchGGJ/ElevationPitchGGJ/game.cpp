@@ -187,9 +187,9 @@ void Game::update(sf::Time t_deltaTime)
 			if (node.getAlive()) {
 				if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
 					m_nodeHandler.m_pingSound.play();
-					m_hud.increaseScore();
+					
 					if (node.m_column == m_pathDisplay.getCurrentNode().m_column) {
-
+						m_hud.increaseScore();
 						std::cout << "Correct node" << std::endl;
 						node.setAlive(false);
 						m_pathDisplay.getCurrentNode().setColor(node.getColor());
