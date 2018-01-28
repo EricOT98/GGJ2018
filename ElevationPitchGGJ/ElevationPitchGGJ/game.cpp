@@ -142,6 +142,7 @@ void Game::update(sf::Time t_deltaTime)
 				std::cout << "collision" << std::endl;
 			}
 			
+
 		}
 		break;
 	}
