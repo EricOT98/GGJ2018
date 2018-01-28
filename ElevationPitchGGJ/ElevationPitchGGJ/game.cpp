@@ -184,11 +184,32 @@ void Game::update(sf::Time t_deltaTime)
 			std::cout << "not colliding" << std::endl;
 		}*/
 		for (auto & node : m_nodeHandler.m_nodes) {
-			if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
-				std::cout << "collision" << std::endl;
-				m_nodeHandler.m_pingSound.play();
-			}
+			if (node.getAlive()) {
+				if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
+					m_nodeHandler.m_pingSound.play();
+					if (node.m_column == m_pathDisplay.getCurrentNode().m_column) {
 
+						std::cout << "Correct node" << std::endl;
+						node.setAlive(false);
+						m_pathDisplay.getCurrentNode().setColor(node.getColor());
+						if (m_pathDisplay.m_currentNode >= m_pathDisplay.getNumNodes() - 1) {
+							std::cout << "Complete" << std::endl;
+							m_pathDisplay.m_currentNode = 0;
+							break;
+						}
+
+						m_pathDisplay.m_currentNode += 1;
+					}
+					else {
+						std::cout << "Incorrect: Restarting" << std::endl;
+						m_pathDisplay.m_currentNode = 0;
+						node.setAlive(false);
+						for (auto & node : m_pathDisplay.m_nodeHandler.m_nodes) {
+							node.setColor(sf::Color(128, 128, 128, 255));
+						}
+					}
+				}
+			}
 
 		}
 		break;

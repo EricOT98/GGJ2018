@@ -19,6 +19,8 @@ public:
 	void Node::spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed, int column);
 	sf::Vector2f getSize();
 	sf::Vector2f getPosition();
+	void setColor(sf::Color col);
+	sf::Color getColor();
 	int m_column;
 protected:
 	sf::Vector2f m_position;

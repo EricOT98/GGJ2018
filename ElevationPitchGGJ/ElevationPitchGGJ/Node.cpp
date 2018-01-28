@@ -67,3 +67,13 @@ sf::Vector2f Node::getPosition()
 {
 	return m_position;
 }
+
+void Node::setColor(sf::Color col)
+{
+	m_rect.setFillColor(col);
+}
+
+sf::Color Node::getColor()
+{
+	return m_rect.getFillColor();
+}

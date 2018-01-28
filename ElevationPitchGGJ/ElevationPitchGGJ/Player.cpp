@@ -37,14 +37,14 @@ void Player::Update(float deltaTime)
 {
 	m_xbox.update();
 	//m_nodeSpeed = 5;
-	
+
 	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Left) || m_xbox.m_currentState.LeftThumbStick.x < -75)
 	{
 		if (m_position.x >= 5)
 		{
 			m_position.x -= speed / 2;
 		}
-		
+
 	}
 
 	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Right) || m_xbox.m_currentState.LeftThumbStick.x > 75)
@@ -55,7 +55,7 @@ void Player::Update(float deltaTime)
 		}
 	}
 
-	
+
 	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Up) || m_xbox.m_currentState.LTtrigger > 75)
 	{
 		//m_player.setSize(m_player.);
@@ -66,10 +66,13 @@ void Player::Update(float deltaTime)
 			{
 				m_nodeSpeed -= 0.5;
 			}
-			
+
 		}
-		
-		std::cout << m_xbox.m_currentState.LTtrigger << std::endl;
+
+
+
+
+		//std::cout << m_xbox.m_currentState.LTtrigger << std::endl;
 	}
 
 	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Down) ||m_xbox.m_currentState.RTtrigger < -75)
@@ -79,10 +82,11 @@ void Player::Update(float deltaTime)
 			m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f, m_player.getSize().y + 0.5f));
 			m_nodeSpeed += 0.2 ;
 		}
-		std::cout << m_xbox.m_currentState.RTtrigger << std::endl;
+		//m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f,m_player.getSize().y ));
+		//std::cout << m_xbox.m_currentState.RTtrigger << std::endl;
 	}
 
-	std::cout << "Speed: "  << std::endl;
+	//std::cout << "Speed: "  << std::endl;
 	m_player.setPosition(m_position);
 
 
@@ -92,7 +96,7 @@ void Player::Draw(sf::RenderWindow& window)
 {
 	window.draw(m_player);
 //	std::cout << "Drawing" << std::endl;
-	
+
 }
 
 int Player::getLives()

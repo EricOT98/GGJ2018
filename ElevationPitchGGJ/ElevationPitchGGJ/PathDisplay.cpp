@@ -22,13 +22,13 @@ void PathDisplay::render(sf::RenderWindow & window)
 
 void PathDisplay::generatePath(int numNodes)
 {
-	int numPositions = m_nodeHandler.getNumPositions();
+	int numPositions = m_nodeHandler.getNumPositions() - 1;
 	int nodeSizeY = m_size.y / numNodes;
 	int nodeSizeX = m_size.x / numNodes;
 	
-	for (int i = 0; i < numNodes; ++i) {
+	for (int i = 0; i < numNodes; i++) {
 		int colToSpawn = std::rand() % numPositions;
-		sf::Color col(std::rand() % 256, std::rand() % 256, std::rand() % 256, 255);
+		sf::Color col(128,128,128, 255);
 		m_nodeHandler.spawnNode(sf::Vector2f(m_nodeHandler.m_positions.at(colToSpawn),i * nodeSizeY),
 			sf::Vector2f(nodeSizeX,nodeSizeY), col, colToSpawn);
 	}
@@ -41,5 +41,20 @@ void PathDisplay::init(sf::Vector2f pos, sf::Vector2f size, int numNodes)
 	m_position = pos;
 	m_size = size;
 	m_active = true;
+}
+
+int PathDisplay::getNodesColumn(int node)
+{
+	return m_nodeHandler.m_nodes.at(node).m_column;
+}
+
+int PathDisplay::getNumNodes()
+{
+	return m_nodeHandler.m_nodes.size();
+}
+
+Node & PathDisplay::getCurrentNode()
+{
+	return m_nodeHandler.m_nodes.at(m_currentNode);
 }
 
