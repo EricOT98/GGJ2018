@@ -64,10 +64,10 @@ std::string Hud::time(sf::Time t_deltaTime)
 			m_secondString = std::to_string(m_seconds);
 		}
 	}
-	if (m_seconds >= 60)		// 60 seconds in a minute occured, check for this
+	if (m_seconds >= 59 && m_miliseconds > 0.97)		// 60 seconds in a minute occured, check for this
 	{
 		
-		m_seconds = 0;			// resets second counter
+		m_seconds = -1;			// resets second counter to minus -1 as there is 1 second gap in minute switch (messy but a fix still)
 		m_minutes++;			// adds 1 to minute counter
 		if (m_minutes <= 9)
 		{
@@ -82,4 +82,30 @@ std::string Hud::time(sf::Time t_deltaTime)
 	m_totalString = m_minuteString + " : " + m_secondString + " : " + m_milisecondString;
 	
 	return m_totalString; 
+}
+
+void Hud::resetTimer()
+{
+	m_miliseconds = 0.f;
+	m_seconds = 0;
+	m_minutes = 0;
+	m_minuteString = "00";
+	m_secondString = "00";
+	m_milisecondString = "00";
+	m_totalString = m_minuteString + " : " + m_secondString + " : " + m_milisecondString;
+}
+
+float Hud::returnMiliseconds()
+{
+	return m_miliseconds;
+}
+
+int Hud::returnSeconds()
+{
+	return m_seconds;
+}
+
+int Hud::returnMinutes()
+{
+	return m_minutes;
 }

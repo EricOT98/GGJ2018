@@ -64,7 +64,7 @@ void Game::run()
 
 			}
 			m_timerChanger = m_hud.time(timePerFrame);
-			m_timer.setString(m_timerChanger);
+			//m_timer.setString(m_timerChanger);
 		}
 		render(); // as many as possible
 	}
@@ -154,11 +154,13 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::MainMenu:
 	{
 		m_mainMenu.update(m_window);
+		m_hud.resetTimer();
 		break;
 	}
 	case GameState::HelpPage:
 	{
 		m_helpPage.update(t_deltaTime);
+		m_hud.resetTimer();
 		break;
 	}
 	default:

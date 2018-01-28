@@ -14,14 +14,18 @@ public:
 	void increaseScore();
 	void render(sf::RenderWindow &);
 	std::string time(sf::Time t_time); // checks time played and converts total time to seconds and minutes
+	void resetTimer();			// resets timer if the game is not being played
+	float returnMiliseconds();
+	int returnSeconds();
+	int returnMinutes();
 private:
 	float m_miliseconds = 0.f;	// holds time in miliseconds
 	
 	int m_multiplier = 100;
 	float m_milisecondTruncate = 0.f;
 	int m_milisecondOutput = 0;
-	int m_seconds = 0.f;		// holds time in seconds 
-	int m_minutes = 0.f;		// holds time in minutes
+	int m_seconds = 0;		// holds time in seconds 
+	int m_minutes = 0;		// holds time in minutes
 	std::string m_milisecondString = "";
 	std::string m_secondString = "";
 	std::string m_minuteString = "";
