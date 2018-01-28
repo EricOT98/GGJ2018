@@ -91,7 +91,14 @@ int NodeHandler::getNumPositions()
 	return m_positions.size();
 }
 
-bool NodeHandler::collision(sf::Vector2f & p_pos, sf::Vector2f & p_size, Node & node)
+void NodeHandler::setAllAlive(bool alive)
+{
+	for (auto & node : m_nodes) {
+		node.setAlive(alive);
+	}
+}
+
+bool NodeHandler::collision(sf::Vector2f & p_pos, sf::Vector2f  p_size, Node & node)
 {
 	sf::Vector2f n_size = node.getSize();
 	sf::Vector2f n_pos = node.getPosition();

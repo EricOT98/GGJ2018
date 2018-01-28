@@ -44,6 +44,9 @@ void Portal::update(float timeInSecs)
 	totalTime += timeInSecs;
 	m_shader.setUniform("time", totalTime);
 	//m_shader.setUniform("mouse", sf::Glsl::Vec2(m_position));
+	if (m_animateIn) {
+		animateIn();
+	}
 }
 
 void Portal::render(sf::RenderWindow & window)
@@ -52,4 +55,14 @@ void Portal::render(sf::RenderWindow & window)
 	m_renderTexture.draw(m_rectShape, &m_shader);
 	//m_renderTexture.display();
 //	window.draw(m_sprite);
+}
+
+void Portal::startAnimation()
+{
+	m_animateIn = true;
+}
+
+void Portal::animateIn()
+{
+	m_sprite.move(sf::Vector2f(0, -1));
 }

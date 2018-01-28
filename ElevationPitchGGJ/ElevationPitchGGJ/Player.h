@@ -19,11 +19,11 @@ public:
 	int getLives();
 	void setLives(int newLives);
 	float m_nodeSpeed = 5;
-
-
+	void loseLife();
+	sf::RectangleShape m_player;
 private:
 
-	sf::RectangleShape m_player;
+	
 	sf::Vector2f m_playerSize = { 100,100 };
 	XboxController m_xbox;
 

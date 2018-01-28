@@ -187,7 +187,7 @@ void Game::update(sf::Time t_deltaTime)
 		}*/
 		for (auto & node : m_nodeHandler.m_nodes) {
 			if (node.getAlive()) {
-				if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
+				if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.m_player.getSize(), node)) {
 					m_nodeHandler.m_pingSound.play();
 					
 					if (node.m_column == m_pathDisplay.getCurrentNode().m_column) {
@@ -197,7 +197,12 @@ void Game::update(sf::Time t_deltaTime)
 						m_pathDisplay.getCurrentNode().setColor(node.getColor());
 						if (m_pathDisplay.m_currentNode >= m_pathDisplay.getNumNodes() - 1) {
 							std::cout << "Complete" << std::endl;
+							m_pathDisplay.m_nodeHandler.setAllAlive(false);
+							m_pathDisplay.generatePath(4);
 							m_pathDisplay.m_currentNode = 0;
+							for (int i = 0; i < 5; i++) {
+								m_hud.increaseScore();
+							}
 							break;
 						}
 
@@ -206,6 +211,7 @@ void Game::update(sf::Time t_deltaTime)
 					else {
 						std::cout << "Incorrect: Restarting" << std::endl;
 						m_pathDisplay.m_currentNode = 0;
+						m_player.loseLife();
 						node.setAlive(false);
 						for (auto & node : m_pathDisplay.m_nodeHandler.m_nodes) {
 							node.setColor(sf::Color(128, 128, 128, 255));
@@ -295,51 +301,22 @@ void Game::setUpScreens()
 
 void Game::gameOverCheck()
 {
-	m_gameOver = true;
+	if (m_player.getLives() == 0)
+	{
+		m_gameOver = true;
+	}
 }
 
 bool Game::collision()
 {
 	sf::Vector2f p_pos = m_player.getPlayerPosition();
-	sf::Vector2f p_size = m_player.getPlayerSize();
+	sf::Vector2f p_size = m_player.m_player.getSize();
 	sf::Vector2f n_pos = m_node.getNodePosition();
 	sf::Vector2f n_size = m_nodeHandler.getNodeSize();
-	/*if (&&  &&
-		 && )
-	{
-		std::cout << "collision" << std::endl;
-		return true;
-	}*/
-	//if (p_pos.x + p_size.x >= n_pos.x)
-	//{
-	//	//std::cout <<  "true 1 " << std::endl;
-	//}
-	//if (!(n_pos.x + n_size.x <= p_pos.x))
-	//{
-	//	std::cout << "true 2" << std::endl;
-	//}
-	//if (p_pos.y + p_size.y >= n_pos.y)
-	//{
-	//	std::cout << "true 3" << std::endl;
-	//}
-	//if (!(n_pos.y + n_size.y <= p_pos.y))
-	//{
-	//	std::cout << "true 4" << std::endl;
-	//}
-	//else
-	//{
-	//	return false;
-	//}
 	return (p_pos.x + p_size.x < n_pos.x ||
 		p_pos.x > n_pos.x + n_size.x ||
 		p_pos.y + p_size.y < n_pos.y ||
 		p_pos.y > n_pos.y + n_size.y);
-
-	if (m_player.getLives() == 0)
-	{
-		m_gameOver = true;
-	}
-
 }
 
 void Game::restartLevel()

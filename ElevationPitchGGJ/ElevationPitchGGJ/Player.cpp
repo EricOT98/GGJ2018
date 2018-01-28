@@ -8,7 +8,7 @@ Player::Player()
 }
 
 Player::Player(float x, float y, float const SCALE, bool set):
-	m_lives{ 0 }
+	m_lives(3)
 {
 	m_position = sf::Vector2f(x, y);
 	m_player.setFillColor(sf::Color(100, 250, 50));
@@ -107,4 +107,9 @@ int Player::getLives()
 void Player::setLives(int newLives)
 {
 	m_lives = newLives;
+}
+
+void Player::loseLife()
+{
+	m_lives--;
 }

@@ -15,6 +15,9 @@ public:
 	void update(float timeInSecs);
 	void render(sf::RenderWindow & window);
 
+	void startAnimation();
+	void animateIn();
+
 	sf::Vector2f m_position;
 	sf::RectangleShape m_rectShape;
 	sf::Shader m_shader;
@@ -23,6 +26,8 @@ public:
 	sf::RenderTexture m_renderTexture;
 	sf::Texture & m_texture;
 	sf::Sprite m_sprite;
+	bool m_animateIn = false;
+	bool m_animateOut = false;
 protected:
 
 };

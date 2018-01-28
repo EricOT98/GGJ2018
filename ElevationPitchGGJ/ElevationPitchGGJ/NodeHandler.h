@@ -21,12 +21,13 @@ public:
 	void populate(int numNodes);
 	bool spawnNode(sf::Vector2f pos, sf::Vector2f size, sf::Color col, int column);
 	void randomGeneration( sf::Vector2f size);
-	bool collision(sf::Vector2f & p_pos, sf::Vector2f & p_size, Node & node);
+	bool collision(sf::Vector2f & p_pos, sf::Vector2f  p_size, Node & node);
 	std::vector<Node> m_nodes;
 	int m_nodespeed  = 5; 
 	void setSpeed(float speed);
 	int getNumPositions();
 	std::vector<int> m_positions;
+	void setAllAlive(bool alive);
 protected:
 	sf::Vector2f m_position;
 	float m_columnWidth = 0;
