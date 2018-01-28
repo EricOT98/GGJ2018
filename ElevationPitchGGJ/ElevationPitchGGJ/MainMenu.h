@@ -1,6 +1,7 @@
 #ifndef MAINMENU
 #define MAINMENU
 #include <SFML\Graphics.hpp>
+#include "XB0XCONTROLLER.h"
 
 class Game;
 class MainMenu
@@ -23,6 +24,7 @@ private:
 	static const int m_optionCount=3;
 	//texts array for all menu boxes
 	sf::Text m_buttonText[m_optionCount];
+	XboxController m_xbox;
 	
 };
 #endif // !MAINMENU

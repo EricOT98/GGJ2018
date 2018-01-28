@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <iostream>
+#include "KeyboardHandler.h"
 
 Player::Player()
 {
@@ -33,10 +34,10 @@ void Player::Update(float deltaTime)
 {
 	m_xbox.update();
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || m_xbox.m_currentState.LeftThumbStick.x < -75)
+	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Left) || m_xbox.m_currentState.LeftThumbStick.x < -75)
 	{
 
-		m_position.x -= speed;
+		m_position.x -= speed /2;
 		
 		//std::cout << "moving" << std::endl;
 		//if (jump == true && m_body->GetPosition().x <= 3.9)
@@ -45,45 +46,52 @@ void Player::Update(float deltaTime)
 		//}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || m_xbox.m_currentState.LeftThumbStick.x > 75)
+	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Right) || m_xbox.m_currentState.LeftThumbStick.x > 75)
 	{
 
-		m_position.x += speed;
+		m_position.x += speed / 2;
 
 		//std::cout << "moving" << std::endl;
 		
 	}
 
-
-	if (m_xbox.m_currentState.LTtrigger > 75)
+	
+	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Up) || m_xbox.m_currentState.LTtrigger > 75)
 	{
 		//m_player.setSize(m_player.);
 		if(m_player.getSize().x < 150 )
 		{
-			m_player.setSize(sf::Vector2f(m_playerSize.x + 1.0f, m_playerSize.y - 0.5f));
+			m_player.setSize(sf::Vector2f(m_player.getSize().x + 1.0f, m_player.getSize().y - 0.5f));
+			m_position.y -= speed / 14;
+			/*m_nodes.m_speed -= 1;*/
 		}
-		//else
-		//{
-		//	if (m_player.setSize(sf::Vector2f(m_player.getSize().x, m_player.getSize().y) > m_player.setSize(sf::Vector2f(60, m_player.getSize().y))
-		//	{
-		//		m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f, m_player.getSize().y));
-		//	}
-		//}
+		
+		
+		
 	
 		std::cout << m_xbox.m_currentState.LTtrigger << std::endl;
 	}
+	/*else  if (m_player.getPosition().y < 400)
+	{
+		m_player.setSize(sf::Vector2f(m_player.getSize().x + 0.2f, m_player.getSize().y + 0.2f));
+		m_position.y += speed / 25;
+	}*/
 
-	if (m_xbox.m_currentState.RTtrigger < -75)
+	
+
+	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Down) ||m_xbox.m_currentState.RTtrigger < -75)
 	{
 		if (m_player.getSize().x > 50)
 		{
-			m_player.setSize(sf::Vector2f(m_playerSize.x - 1.0f, m_playerSize.y + 0.5f));
+			m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f, m_player.getSize().y + 0.5f));
+			m_position.y += speed / 14;
+			/*m_nodes.m_speed += 1;*/
 		}
 		//m_player.setSize(sf::Vector2f(m_player.getSize().x - 1.0f,m_player.getSize().y ));
 		std::cout << m_xbox.m_currentState.RTtrigger << std::endl;
 	}
 
-
+	std::cout << "Speed: "  << std::endl;
 	m_player.setPosition(m_position);
 
 

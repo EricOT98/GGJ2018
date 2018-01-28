@@ -1,8 +1,8 @@
 #include "NodeHandler.h"
 
-NodeHandler::NodeHandler() 
+NodeHandler::NodeHandler()
 {
-	
+
 }
 
 NodeHandler::~NodeHandler()
@@ -46,7 +46,7 @@ void NodeHandler::init(sf::Vector2f pos, sf::Vector2f & windowSize, int numColum
 		m_line[1].color = sf::Color::Red;
 		m_lines.push_back(m_line);
 	}
-	
+
 	std::srand(0);
 }
 
@@ -88,4 +88,10 @@ bool NodeHandler::collision(sf::Vector2f & p_pos, sf::Vector2f & p_size, Node & 
 		p_pos.x > n_pos.x + n_size.x ||
 		p_pos.y + p_size.y < n_pos.y ||
 		p_pos.y > n_pos.y + n_size.y);
+}
+void NodeHandler::setSpeed(float speed)
+{
+	for (auto & node : m_nodes) {
+		node.m_speed = speed;
+	}
 }

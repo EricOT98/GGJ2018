@@ -18,6 +18,7 @@ enum class GameState
 };
 #include "Player.h"
 #include "XB0XCONTROLLER.h"
+#include "KeyboardHandler.h"
 class Game
 {
 public:
@@ -39,7 +40,7 @@ private:
 	void processEvents();
 	void update(sf::Time t_deltaTime);
 	void render();
-	
+
 	void setupFont();
 	void setUpScreens();
 	bool collision();

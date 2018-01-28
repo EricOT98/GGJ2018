@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeHandler.cpp" />
@@ -33,6 +34,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeHandler.h" />
     <ClInclude Include="Portal.h" />

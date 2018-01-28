@@ -3,6 +3,7 @@
 
 
 #include "XB0XCONTROLLER.h"
+#include "Node.h"
 
 class Player
 {
@@ -21,10 +22,11 @@ private:
 	sf::RectangleShape m_player;
 	sf::Vector2f m_playerSize = { 100,100 };
 	XboxController m_xbox;
+	
 	float speed = 50;
 	float increase = 10;
 	sf::Vector2f m_position = sf::Vector2f(200,400);
-
+	/*Node m_nodes;*/
 };
 
 #endif

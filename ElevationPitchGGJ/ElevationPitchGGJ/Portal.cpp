@@ -19,7 +19,7 @@ Portal::Portal(sf::Vector2f position, float radius, std::string filename)
 		std::cout << "error" << std::endl;
 	}
 	m_rectShape.setPosition(sf::Vector2f(0, 0 ));
-	m_rectShape.setSize(sf::Vector2f(200, 200));
+	m_rectShape.setSize(sf::Vector2f(200, 600));
 
 	m_shader.setUniform("time", 1.f);
 	//m_shader.setUniform("mouse",sf::Glsl::Vec2(m_position));
@@ -50,6 +50,6 @@ void Portal::render(sf::RenderWindow & window)
 {
 	m_renderTexture.clear(sf::Color::Black);
 	m_renderTexture.draw(m_rectShape, &m_shader);
-	m_renderTexture.display();
-	window.draw(m_sprite);
+	//m_renderTexture.display();
+//	window.draw(m_sprite);
 }

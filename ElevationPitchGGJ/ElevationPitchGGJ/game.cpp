@@ -76,6 +76,10 @@ void Game::processEvents()
 				Game::currentGameState = GameState::MainMenu;
 			}
 		}
+
+
+
+
 		switch (currentGameState)
 		{
 		case GameState::MainMenu:
@@ -90,6 +94,23 @@ void Game::processEvents()
 		}
 		default:
 			break;
+		}
+	}
+
+
+	if (event.key.code >= 0 && event.key.code < sf::Keyboard::Key::KeyCount)
+	{
+		if (event.type == event.KeyPressed)
+		{
+			if (!KeyboardHandler::GetInstance()->m_keysUp[event.key.code])
+			{
+				KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = true;
+			}
+		}
+		else if (event.type == event.KeyReleased)
+		{
+			KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = false;
+			KeyboardHandler::GetInstance()->m_keysUp[event.key.code] = false;
 		}
 	}
 }
@@ -141,7 +162,7 @@ void Game::update(sf::Time t_deltaTime)
 			if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
 				std::cout << "collision" << std::endl;
 			}
-			
+
 
 		}
 		break;
@@ -153,7 +174,7 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::White);
+	m_window.clear(sf::Color::Black);
 
 
 	switch (currentGameState)
@@ -196,7 +217,7 @@ void Game::setupFont()
 	}
 	m_timer.setFont(m_ArialBlackFont);
 	m_timer.setStyle(sf::Text::Bold);
-	m_timer.setPosition(100.f, 100.f);
+	m_timer.setPosition(1550.f, 50.f);
 	m_timer.setCharacterSize(60);
 	m_timer.setFillColor(sf::Color::Yellow);
 	m_timer.setOutlineColor(sf::Color::Black);

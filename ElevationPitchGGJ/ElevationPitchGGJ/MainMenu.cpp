@@ -12,7 +12,7 @@ MainMenu::~MainMenu()
 void MainMenu::init(sf::Font & font)
 {
 	
-	sf::String m_menuTexts[] = { "Quit(escape)","Help Page(Abutton)","Play Game(Bbutton)"};
+	sf::String m_menuTexts[] = { "Quit","Help Page","Play Game"};
 	m_font = font;
 	for (int i = 0; i < m_optionCount; i++)
 	{
@@ -35,11 +35,14 @@ void MainMenu::render(sf::RenderWindow & window)
 //go from 1 state to another-> change to controller
 void MainMenu::update(sf::Window & window)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+
+	m_xbox.update();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || m_xbox.m_currentState.X)
 	{
 		Game::currentGameState = GameState::HelpPage;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B) || m_xbox.m_currentState.A)
 	{
 		Game::currentGameState = GameState::PlayGame;
 	}

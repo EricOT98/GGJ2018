@@ -12,6 +12,7 @@ public:
 	void update();
 	void render(sf::RenderWindow & window);
 	sf::Vector2f getNodePosition();
+	float m_speed = 1;
 	void spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed);
 
 	bool getAlive();
@@ -22,7 +23,7 @@ public:
 protected:
 	sf::Vector2f m_position;
 	sf::RectangleShape m_rect;
-	float m_speed = 1;
+
 	bool m_alive;
 };
 
