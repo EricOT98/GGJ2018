@@ -20,7 +20,7 @@ void MainMenu::init(sf::Font & font)
 		m_buttonText[i].setString(m_menuTexts[i]);
 		m_buttonText[i].setFillColor(sf::Color::Red);
 		m_buttonText[i].setCharacterSize(34);
-		m_buttonText[i].setPosition(Game::screenWidth /2,Game::screenHeight-(270*(i+1)));
+		m_buttonText[i].setPosition(Game::screenWidth /2,Game::screenHeight-(100*(i+1)));
 	}
 }
 //draw the texts on screen

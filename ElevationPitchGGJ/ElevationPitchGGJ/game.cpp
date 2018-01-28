@@ -3,8 +3,8 @@
 
 
 GameState Game::currentGameState = GameState::MainMenu;
-float Game::screenWidth = 2000;
-float Game::screenHeight = 1000;
+float Game::screenWidth = 1280;
+float Game::screenHeight = 720;
 
 
 Game::Game() :
@@ -13,9 +13,12 @@ Game::Game() :
 	m_portal(sf::Vector2f(400,200), 100, "test"),
 	player(400,400, 40,40)
 {
-		m_respawnTime = 1;
-		m_nodeHandler.populate(30);
-		m_nodeHandler.init(sf::Vector2f(0, 0), sf::Vector2f(m_window.getSize()), 4);
+	int gap = 20;
+	m_respawnTime = 1;
+	m_nodeHandler.populate(30);
+	m_nodeHandler.init(sf::Vector2f(0, 0), sf::Vector2f((m_window.getSize().x - gap), m_window.getSize().y), 4);
+	m_pathDisplay.init(sf::Vector2f((m_window.getSize().x / 2) + (gap * 2), 0), sf::Vector2f((m_window.getSize().x / 2) - (gap * 2) , m_window.getSize().y), 4);
+	m_pathDisplay.generatePath(4);
 	//Game:Elevation Pitch
 
 	setupFont(); // load font
@@ -128,6 +131,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 	m_portal.update(t_deltaTime.asSeconds());
 	m_nodeHandler.update();
+	m_pathDisplay.update();
 		break;
 	}
 }
@@ -154,8 +158,9 @@ void Game::render()
 	}
 	default:
 		m_nodeHandler.render(m_window);
+		m_pathDisplay.render(m_window);
 		m_window.draw(m_timer);
-		m_portal.render(m_window);
+		//m_portal.render(m_window);
 		player.Draw(m_window);
 		break;
 	}

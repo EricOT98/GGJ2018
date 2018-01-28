@@ -5,6 +5,7 @@
 #include "HUD.h"
 #include "Portal.h"
 #include "NodeHandler.h"
+#include "PathDisplay.h"
 
 #include "MainMenu.h"
 #include "HelpPage.h"
@@ -48,6 +49,7 @@ private:
 	bool m_exitGame; // control exiting game
 	Portal m_portal;
 	NodeHandler m_nodeHandler;
+	PathDisplay m_pathDisplay;
 
 	//TODO: (ERIC) Remove this to work with hud timer
 	float m_spawnTimer = 0;

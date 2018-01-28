@@ -16,13 +16,14 @@ public:
 	void init(sf::Vector2f pos, sf::Vector2f & windowSize, int numColumns);
 
 	void populate(int numNodes);
-	bool spawnNode(sf::Vector2f pos, sf::Vector2f size, sf::Color col);
+	bool spawnNode(sf::Vector2f pos, sf::Vector2f size, sf::Color col, int column);
 	void randomGeneration( sf::Vector2f size);
 	int getNumPositions();
+	std::vector<int> m_positions;
 protected:
 	sf::Vector2f m_position;
 	std::vector<Node> m_nodes;
-	std::vector<int> m_positions;
+	
 	float m_columnWidth = 0;
 	std::vector<sf::VertexArray> m_lines;
 	sf::Vector2f m_size;
