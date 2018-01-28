@@ -141,9 +141,7 @@ void Game::update(sf::Time t_deltaTime)
 			if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
 				std::cout << "collision" << std::endl;
 			}
-			else {
-			//	std::cout << "not col" << std::endl;
-			}
+			
 		}
 		break;
 	}
