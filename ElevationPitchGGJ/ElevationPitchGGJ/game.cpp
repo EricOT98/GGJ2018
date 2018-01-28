@@ -199,6 +199,8 @@ void Game::update(sf::Time t_deltaTime)
 							std::cout << "Complete" << std::endl;
 							m_pathDisplay.m_nodeHandler.setAllAlive(false);
 							m_pathDisplay.generatePath(4);
+							std::cout << "Complete and your score is " << m_timerChanger << std::endl;
+							m_hud.resetTimer();
 							m_pathDisplay.m_currentNode = 0;
 							for (int i = 0; i < 5; i++) {
 								m_hud.increaseScore();
