@@ -49,7 +49,7 @@ void Player::Update(float deltaTime)
 
 	if (KeyboardHandler::GetInstance()->KeyDown(sf::Keyboard::Right) || m_xbox.m_currentState.LeftThumbStick.x > 75)
 	{
-		if (m_position.x <= 500 )
+		if (m_position.x  + m_player.getSize().x <= 640 - 20 )
 		{
 			m_position.x += speed / 2;
 		}
