@@ -54,21 +54,13 @@ void Game::run()
 		{
 			timeSinceLastUpdate -= timePerFrame;
 			processEvents(); // at least 60 fps
-<<<<<<< HEAD
+			update(timePerFrame); //60 fps
 
-
-
-				update(timePerFrame); //60 fps
-
-				m_timerChanger = m_hud.time(timePerFrame);
-				m_timer.setString(m_timerChanger);
-
-=======
-
+			m_timerChanger = m_hud.time(timePerFrame);
+			m_timer.setString(m_timerChanger);
 			if (!m_gameOver)
 			{
 				update(timePerFrame); //60 fps
->>>>>>> end game sort of works
 
 			}
 			m_timerChanger = m_hud.time(timePerFrame);
@@ -102,16 +94,11 @@ void Game::processEvents()
 			{
 				Game::currentGameState = GameState::MainMenu;
 			}
-<<<<<<< HEAD
-
-=======
 			if (sf::Keyboard::Space == event.key.code && m_gameOver == true)
 			{
 				m_gameOver = false;
 				restartLevel();
 			}
-
->>>>>>> end game sort of works
 		}
 
 
@@ -318,7 +305,7 @@ bool Game::collision()
 		p_pos.x > n_pos.x + n_size.x ||
 		p_pos.y + p_size.y < n_pos.y ||
 		p_pos.y > n_pos.y + n_size.y);
-	if (player.getLives() == 0)
+	if (m_player.getLives() == 0)
 	{
 		m_gameOver = true;
 	}
@@ -327,5 +314,5 @@ bool Game::collision()
 
 void Game::restartLevel()
 {
-	player.setLives(3);
+	m_player.setLives(3);
 }
