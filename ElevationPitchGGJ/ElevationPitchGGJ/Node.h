@@ -13,8 +13,6 @@ public:
 	void render(sf::RenderWindow & window);
 	sf::Vector2f getNodePosition();
 	float m_speed = 1;
-	void spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed);
-
 	bool getAlive();
 	void setAlive(bool alive);
 	bool withinBounds(sf::Vector2f pos, sf::Vector2f size);

@@ -32,13 +32,15 @@ sf::Vector2f Node::getNodePosition()
 /// <param name="size">Size of the node</param>
 /// <param name="col">Fil color of the node</param>
 /// <param name="speed"> speed of the node</param>
-void Node::spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed = 1.0f)
+void Node::spawn(sf::Vector2f pos, sf::Vector2f size, sf::Color col, float speed, int column)
 {
 	m_position = pos;
 	m_rect.setSize(size);
 	m_rect.setFillColor(col);
+	m_rect.setPosition(pos);
 	m_alive = true;
 	m_speed = speed;
+	m_column = column;
 }
 
 bool Node::getAlive()
