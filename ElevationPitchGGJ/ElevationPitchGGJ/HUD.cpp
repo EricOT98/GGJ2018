@@ -1,11 +1,46 @@
 #include "HUD.h"
-
-Hud::Hud()
+#include "Game.h"
+Hud::Hud():
+	m_score{0}
 {
 }
 
 Hud::~Hud()
 {
+}
+
+void Hud::init(sf::Font &font)
+{
+	m_font = font;
+	m_scoreText.setFont(font);
+	m_scoreText.setStyle(sf::Text::Bold);
+	m_scoreText.setString("Score");
+	m_scoreText.setPosition(Game::screenWidth-1000, 50);
+	m_scoreText.setFillColor(sf::Color::Yellow);
+	m_scoreText.setCharacterSize(60);
+	m_scoreText.setOutlineColor(sf::Color::Black);
+	m_scoreText.setOutlineThickness(5.f);
+}
+
+int Hud::getScore()
+{
+	return m_score;
+}
+
+void Hud::setScore(int newScore)
+{
+	m_score = newScore;
+}
+
+void Hud::increaseScore()
+{
+	m_score = m_score + 1;
+}
+
+void Hud::render(sf::RenderWindow &window)
+{
+	m_scoreText.setString("Score : " + std::to_string(m_score));
+	window.draw(m_scoreText);
 }
 
 std::string Hud::time(sf::Time t_deltaTime)

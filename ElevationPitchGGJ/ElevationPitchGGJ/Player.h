@@ -20,6 +20,7 @@ public:
 	void setLives(int newLives);
 	float m_nodeSpeed = 5;
 
+
 private:
 
 	sf::RectangleShape m_player;
@@ -30,6 +31,7 @@ private:
 	float increase = 10;
 	sf::Vector2f m_position;
 	int m_lives;
+
 
 };
 

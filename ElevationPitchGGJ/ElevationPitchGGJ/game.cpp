@@ -187,6 +187,7 @@ void Game::update(sf::Time t_deltaTime)
 			if (node.getAlive()) {
 				if (m_nodeHandler.collision(m_player.getPlayerPosition(), m_player.getPlayerSize(), node)) {
 					m_nodeHandler.m_pingSound.play();
+					m_hud.increaseScore();
 					if (node.m_column == m_pathDisplay.getCurrentNode().m_column) {
 
 						std::cout << "Correct node" << std::endl;
@@ -243,6 +244,7 @@ void Game::render()
 		m_window.draw(m_timer);
 		m_portal.render(m_window);
 		m_player.Draw(m_window);
+		m_hud.render(m_window);
 		break;
 
 	}
@@ -283,14 +285,15 @@ void Game::setUpScreens()
 	m_mainMenu.init(m_ArialBlackFont);
 	m_helpPage.init(m_ArialBlackFont);
 
+
+		m_hud.init(m_ArialBlackFont);
+
+
 }
 
 void Game::gameOverCheck()
 {
-
-
-		m_gameOver = true;
-
+	m_gameOver = true;
 }
 
 bool Game::collision()
@@ -329,6 +332,7 @@ bool Game::collision()
 		p_pos.x > n_pos.x + n_size.x ||
 		p_pos.y + p_size.y < n_pos.y ||
 		p_pos.y > n_pos.y + n_size.y);
+
 	if (m_player.getLives() == 0)
 	{
 		m_gameOver = true;
@@ -339,4 +343,5 @@ bool Game::collision()
 void Game::restartLevel()
 {
 	m_player.setLives(3);
+	m_hud.setScore(0);
 }

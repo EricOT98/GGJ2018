@@ -64,6 +64,7 @@ private:
 	float m_respawnTime;
 	Player m_player;
 	bool m_collided = false;
+
 	//object for main menu
 	MainMenu m_mainMenu;
 	//object for help page
