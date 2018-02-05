@@ -11,7 +11,7 @@ public:
 
 	void update();
 	void render(sf::RenderWindow & window);
-	sf::Vector2f getNodePosition();
+	sf::Vector2f  getNodePosition();
 	float m_speed = 1;
 	bool getAlive();
 	void setAlive(bool alive);

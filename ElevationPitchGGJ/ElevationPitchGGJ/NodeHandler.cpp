@@ -2,10 +2,7 @@
 
 NodeHandler::NodeHandler()
 {
-	if (!m_buffer.loadFromFile("ASSETS\\AUDIO\\ping.wav"))
-	{
-	}
-	m_pingSound.setBuffer(m_buffer);
+	
 }
 
 NodeHandler::~NodeHandler()
